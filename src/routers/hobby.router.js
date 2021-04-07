@@ -55,7 +55,7 @@ router.get('/:id',async (req, res) => {
     }
 });
 
-//POST - SignIn a new Hobby in the DB & Login
+//POST - Create a new Hobby in the DB & Login
 
 router.post('/',async (req, res) => {
     try{

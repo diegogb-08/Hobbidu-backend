@@ -9,7 +9,8 @@ const userSchema = new Schema({
     user_name: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        lowercase: true,
     },
     email: {
         type: String,
@@ -39,12 +40,6 @@ const userSchema = new Schema({
     },
     hobbies: [{
         type: ObjectId,
-        validate: {
-            validator: function(v,x,z) {
-                return !(this.todoList.length > 10);  
-            }, 
-            message: props => `${props.value} exceeds maximum array size (10)!`
-        },
         required: [true, 'At least 1 hobby is required']
     }],
     creation_date: {

@@ -21,13 +21,10 @@ class Customer {
         return User.findById(id);
     };
 
-     //GET - Return a User with specified User_name
+     //GET - Return any User with specified User_name
 
-     async findByUserName({query}) {
-        if(query == undefined)
-        return []
-        else
-        return User.findOne({"user_name": query});
+     async findByUserName({name}) {
+        return User.find({"user_name": new RegExp(name, 'i')});
     };
 
     //GET - Return a user with specified email
