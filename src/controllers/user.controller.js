@@ -11,8 +11,8 @@ class Customer {
 
     //GET - Return all Users in the DB
 
-    async findAllUsers(users){
-        return User.find(users);
+    async findAllUsers(){
+        return User.find();
     };
 
     //GET - Return a User with specified ID

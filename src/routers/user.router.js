@@ -22,7 +22,6 @@ router.get('/', async (req, res) => {
 router.get('/search',async (req, res) => {
     try {
         const user = await userController.findByUserName(req.query);
-        console.log('UUUUSSSSEEEEEERRRRRRR', user)
         res.json(user)
     }catch (err) {
         return res.status(500).json({

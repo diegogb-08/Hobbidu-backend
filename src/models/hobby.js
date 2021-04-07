@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
 const hobbySchema = new Schema({
-    hobby : {
+    hobby_name : {
         type: String,
+        uppercase: true,
         required: true,
         unique: true
     },

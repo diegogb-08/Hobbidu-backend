@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const ObjectId = mongoose.Types.ObjectId;
 
 const userSchema = new Schema({
     name: { 
@@ -19,10 +20,6 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    creation_date: {
-        type: Date,
-        default: new Date
-    },
     birth_date: { 
         type: Date,
     },
@@ -39,7 +36,21 @@ const userSchema = new Schema({
     profile_img: {
         data: Buffer,
         contentType: String
-    }
+    },
+    hobbies: [{
+        type: ObjectId,
+        validate: {
+            validator: function(v,x,z) {
+                return !(this.todoList.length > 10);  
+            }, 
+            message: props => `${props.value} exceeds maximum array size (10)!`
+        },
+        required: [true, 'At least 1 hobby is required']
+    }],
+    creation_date: {
+        type: Date,
+        default: new Date
+    },
 });
 
 const toJSONConfig = {
