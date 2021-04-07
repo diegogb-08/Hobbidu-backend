@@ -19,6 +19,7 @@ const QUEARY_STRING = MONGO_USER ?
 // mongodb+srv://Diegogb-08:<password>@cluster0.kmacc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
 // Connection to DB
+console.log(QUEARY_STRING)
 const db = mongoose.connect(QUEARY_STRING,{useNewUrlParser: true, useUnifiedTopology: true})
 .then(console.log('Connected to Database'))
 .catch((error) => console.log(error));
