@@ -13,6 +13,10 @@ const eventSchema = new Schema({
         ref: 'Hobby',
         required: true
     },
+    joiner : {
+        type: [],
+        ref: 'User',
+    },
     image : {
         data: Buffer,
         contentType: String
