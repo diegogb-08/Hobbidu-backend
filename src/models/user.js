@@ -25,8 +25,7 @@ const userSchema = new Schema({
         type: Date,
     },
     phone_number: { 
-        type: Number,
-        unique: true
+        type: Number
     },
     location: { 
         type: String
@@ -38,10 +37,7 @@ const userSchema = new Schema({
         data: Buffer,
         contentType: String
     },
-    hobbies: [{
-        type: ObjectId,
-        required: [true, 'At least 1 hobby is required']
-    }],
+    hobbies: [],
     creation_date: {
         type: Date,
         default: new Date

@@ -59,6 +59,7 @@ router.get('/:id',async (req, res) => {
 
 router.post('/',async (req, res) => {
     try{
+        console.log(req.body)
         const hobby = await hobbyController.createNewHobby(req.body);
         res.json(hobby);
     } catch( err ){

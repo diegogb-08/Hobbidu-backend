@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
-const meetingSchema = new Schema({
+const eventSchema = new Schema({
     user_id : { 
         type: ObjectId,
         ref: 'User',
@@ -27,7 +27,7 @@ const meetingSchema = new Schema({
     content : {
         type: String,
     },
-    meeting_date: {
+    event_date: {
         type: Date,
         required: true
     },
@@ -39,5 +39,5 @@ const meetingSchema = new Schema({
     
 });
 
-const Meeting = mongoose.model('Meeting', meetingSchema);
-module.exports = Meeting;
+const Event = mongoose.model('Event', eventSchema);
+module.exports = Event;

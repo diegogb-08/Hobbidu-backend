@@ -79,7 +79,7 @@ router.post('/login',async (req, res) => {
         const user = jwt.user
         res.json({token,user})
     } catch (err) {
-        return res.status(401).json({
+        return res.status(500).json({
             message: err.message
         });
     }
