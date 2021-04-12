@@ -8,7 +8,7 @@ class Hobbies {
 
     //GET - Return all Hobbys in the DB
     async findAllHobbys(){
-        return Hobby.find();
+        return Hobby.find().limit(15);
     };
 
     //GET - Return all Hobbys in the DB
@@ -32,7 +32,12 @@ class Hobbies {
 
     //POST - Create a new Hobby in the DB & Login
     async createNewHobby(hobby){
-       return await Hobby.create(hobby);
+        let hobbyFound = Hobby.findOne({"hobby_name": hobby.hobby_name});
+        if(hobbyFound){
+            return hobbyFound
+        }else{
+            return await Hobby.create(hobby);
+        }
     };
 
     //DELETE - Delete a Hobby with specified ID
