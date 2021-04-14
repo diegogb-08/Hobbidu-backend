@@ -34,8 +34,7 @@ const userSchema = new Schema({
         type: String
     },
     profile_img: {
-        data: Buffer,
-        contentType: String
+        type: String
     },
     hobbies: [],
     creation_date: {

@@ -2,6 +2,7 @@ const router = require('express').Router();
 const userController = require('../controllers/user.controller');
 const jwt = require('jsonwebtoken');
 const auth = require('../middlewares/auth');
+const upload = require('../middlewares/uploads')
 
 // API routes
 
@@ -59,9 +60,10 @@ router.get('/:id',async (req, res) => {
 
  //POST - SignIn a new User in the DB & Login
 
-router.post('/',async (req, res) => {
+router.post('/', upload.single('profile_img'), async (req, res) => {
+
     try{
-        const user = await userController.signUpUser(req.body);
+        const user = await userController.signUpUser(req.body,req.file.path);
         res.json(user);
     } catch( err ){
         console.log(err)
@@ -87,7 +89,7 @@ router.post('/login',async (req, res) => {
 
   //PUT - Update a User Profil already existing
 
-router.put('/:id', auth, async (req,res) => {
+router.put('/:id', upload.single('profile_img'), auth, async (req,res) => {
     try{
         const id = req.params.id;
         const userUpdated = await userController.updateProfile(id,req.body)

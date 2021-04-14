@@ -10,6 +10,7 @@ const port = 3000;
 // Middleware
 app.use(express.json())
 app.use(cors())
+app.use('/uploads', express.static('uploads'))
 app.use(router);
 
 

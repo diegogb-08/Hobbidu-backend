@@ -38,8 +38,11 @@ class Customer {
 
     //POST - SignUp a new User in the DB & Login
 
-    async signUpUser(user){
+    async signUpUser(user,filePath){
+        console.log(filePath)
         user.password = await bcrypt.hash(user.password, 10)
+        user.profile_img = filePath
+        console.log(user)
        return User.create(user)
     };
 
