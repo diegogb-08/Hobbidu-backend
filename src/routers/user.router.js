@@ -89,10 +89,38 @@ router.post('/login',async (req, res) => {
 
   //PUT - Update a User Profil already existing
 
-router.put('/:id', upload.single('profile_img'), auth, async (req,res) => {
+router.put('/:id', auth, async (req,res) => {
     try{
         const id = req.params.id;
         const userUpdated = await userController.updateProfile(id,req.body)
+        res.json(userUpdated).status(200);
+    } catch( err ){
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
+  //PUT - Update Profile Picture
+
+  router.put('/update_picture/:id', upload.single('profile_img'), auth, async (req,res) => {
+    try{
+        const id = req.params.id;
+        const userUpdated = await userController.updateProfilePicture(id,req.body,req.file.path)
+        res.json(userUpdated).status(200);
+    } catch( err ){
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
+  //PUT - Update User password
+
+  router.put('/changep/:id', auth, async (req,res) => {
+    try{
+        const id = req.params.id;
+        const userUpdated = await userController.changePassword(id,req.body)
         res.json(userUpdated).status(200);
     } catch( err ){
         return res.status(500).json({

@@ -12,19 +12,19 @@ class Customer {
     //GET - Return all Users in the DB
 
     async findAllUsers(){
-        return User.find();
+        return await User.find();
     };
 
     //GET - Return a User with specified ID
 
     async findById(id) {
-        return User.findById(id);
+        return await User.findById(id);
     };
 
      //GET - Return any User with specified User_name
 
      async findByUserName({name}) {
-        return User.find({"user_name": new RegExp(name, 'i')});
+        return await User.find({"user_name": new RegExp(name, 'i')});
     };
 
     //GET - Return a user with specified email
@@ -33,7 +33,7 @@ class Customer {
         if(query == undefined)
         return []
         else
-        return User.findOne({"email": query});
+        return await User.findOne({"email": query});
     };
 
     //POST - SignUp a new User in the DB & Login
@@ -42,12 +42,11 @@ class Customer {
         console.log(filePath)
         user.password = await bcrypt.hash(user.password, 10)
         user.profile_img = filePath
-        console.log(user)
-       return User.create(user)
+       return await User.create(user)
     };
 
     async login(email,password){
-        const user =  await User.findOne({email})
+        const user = await User.findOne({email})
         if(!user){
             throw new Error('Email does not exist')
         }
@@ -66,13 +65,37 @@ class Customer {
     //PUT - Update a User Profil already existing
 
     async updateProfile(id,user){
-        return User.findByIdAndUpdate(id,user,{new: true})
+        return await User.findByIdAndUpdate(id,user,{new: true})
     };
+
+    //PUT - Update Profile picture
+
+    async updateProfilePicture(id,user, file){
+        user.profile_img = file;
+        return await User.findByIdAndUpdate(id,user,{new: true})
+    };
+
+    //PUT - Update User Password 
+
+    async changePassword(id,body){
+        const user = await User.findOne({_id: id});
+        if(!user){
+            throw new Error('User does not exist')
+        }
+        if (!await bcrypt.compare(body.oldPassword,user.password)){
+            throw new Error('Password incorrect')
+        }else{
+            user.password = await bcrypt.hash(body.newPassord, 10)
+            return await User.findByIdAndUpdate(id,user,{new: true})
+        }
+    };
+
+
 
     //DELETE - Delete a User with specified ID
 
     async deleteUser(id) {
-        return User.findByIdAndRemove(id)
+        return await User.findByIdAndRemove(id)
     };
 };
 
