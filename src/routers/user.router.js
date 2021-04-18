@@ -115,12 +115,25 @@ router.put('/:id', auth, async (req,res) => {
     }
 });
 
-  //PUT - Update User password
+//PUT - Update User password
 
-  router.put('/changep/:id', auth, async (req,res) => {
+router.put('/change_password/:id', auth, async (req,res) => {
     try{
         const id = req.params.id;
         const userUpdated = await userController.changePassword(id,req.body)
+        res.json(userUpdated).status(200);
+    } catch( err ){
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
+//PUT - Update User Email
+
+router.put('/change_email/:id', auth, async (req,res) => {
+    try{
+        const userUpdated = await userController.changeEmail(req.body)
         res.json(userUpdated).status(200);
     } catch( err ){
         return res.status(500).json({

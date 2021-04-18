@@ -39,7 +39,6 @@ class Customer {
     //POST - SignUp a new User in the DB & Login
 
     async signUpUser(user,filePath){
-        console.log(filePath)
         user.password = await bcrypt.hash(user.password, 10)
         user.profile_img = filePath
        return await User.create(user)
@@ -78,15 +77,38 @@ class Customer {
     //PUT - Update User Password 
 
     async changePassword(id,body){
+
         const user = await User.findOne({_id: id});
         if(!user){
             throw new Error('User does not exist')
         }
         if (!await bcrypt.compare(body.oldPassword,user.password)){
+
             throw new Error('Password incorrect')
         }else{
-            user.password = await bcrypt.hash(body.newPassord, 10)
+
+            user.password = await bcrypt.hash(body.newPassword, 10)
             return await User.findByIdAndUpdate(id,user,{new: true})
+        }
+    };
+
+
+    //PUT - Update User Email 
+
+    async changeEmail(body){
+
+        const user = await User.findOne({email: body.oldEmail});
+        
+        if(!user){
+            throw new Error('User does not exist')
+        }
+        if (!await bcrypt.compare(body.password,user.password)){
+
+            throw new Error('Password incorrect')
+        }else{
+
+            user.email = body.newEmail
+            return await User.findByIdAndUpdate(user._id,user,{new: true})
         }
     };
 
