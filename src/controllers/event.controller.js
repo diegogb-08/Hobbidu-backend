@@ -17,15 +17,15 @@ class Events {
         return Event.find()
     };
 
-    //GET - Return all Events in the DB
+    //GET - Return all Events by User Id
     async findEventByUserId(user_id){
         return Event.find({"user_id": user_id});
     };
 
     
-    //GET - Return a Event by ID
-    async findEventsByHobby({hobby_id}) {
-        return Event.findOne({"hobby_id": hobby_id});
+    //GET - Return all Events by Hobby Id
+    async findEventsByHobbyId(hobby_id) {
+        return Event.find({"hobby_id": hobby_id});
     };
     
     //GET - Return a Event with specified ID
@@ -33,16 +33,22 @@ class Events {
         return Event.findById(id);
     };
 
-    //PUT - Update a User Profil already existing
+    //PUT - Update an Event by ID with verified user
 
-    async updateEvent(id,body){
-        return await Event.findByIdAndUpdate(id,body,{new: true})
+    async updateEvent(user_id, body){
+        if(user_id == body.user_id)
+            return await Event.findByIdAndUpdate(body._id,body,{new: true})
+        else
+            throw new Error('Not authorized to update this Event')
     };
 
     //DELETE - Delete a Event with specified ID
 
-    async deleteEvent(id) {
-        return Event.findByIdAndRemove(id)
+    async deleteEvent(user_id, body) {
+        if(user_id === body.user_id)
+            return Event.findByIdAndRemove(body._id)
+        else
+            throw new Error('Not authorized to update this Event')
     };
 };
 

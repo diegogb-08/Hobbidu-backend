@@ -17,7 +17,7 @@ const eventSchema = new Schema({
         required: true
     },
     joiners : {
-        type: [],
+        type: Array,
         ref: 'User',
     },
     maxJoiners : {
