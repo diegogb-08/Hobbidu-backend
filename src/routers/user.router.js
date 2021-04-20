@@ -66,7 +66,6 @@ router.post('/', upload.single('profile_img'), async (req, res) => {
         const user = await userController.signUpUser(req.body,req.file.path);
         res.json(user);
     } catch( err ){
-        console.log(err)
         return res.status(500).json({
             message: err.message
         });

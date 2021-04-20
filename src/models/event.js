@@ -3,23 +3,29 @@ const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
 const eventSchema = new Schema({
+    title : {
+        type: String,
+    },
     user_id : { 
         type: ObjectId,
         ref: 'User',
         required: true
     },
     hobby_id : {
-        type: ObjectId,
+        type:  ObjectId,
         ref: 'Hobby',
         required: true
     },
-    joiner : {
+    joiners : {
         type: [],
         ref: 'User',
     },
+    maxJoiners : {
+        type: Number,
+        required: true
+    },
     image : {
-        data: Buffer,
-        contentType: String
+        type: String
     },
     descritpion : {
         type: String,
@@ -30,6 +36,10 @@ const eventSchema = new Schema({
     },
     content : {
         type: String,
+    },
+    price : {
+        type: String,
+        default: 'Free'
     },
     event_date: {
         type: Date,
