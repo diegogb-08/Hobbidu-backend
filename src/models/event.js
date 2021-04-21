@@ -34,13 +34,6 @@ const eventSchema = new Schema({
         type: String,
         required: true
     },
-    content : {
-        type: String,
-    },
-    price : {
-        type: String,
-        default: 'Free'
-    },
     event_date: {
         type: Date,
         required: true
