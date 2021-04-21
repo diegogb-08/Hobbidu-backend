@@ -24,6 +24,12 @@ const eventSchema = new Schema({
         type: Number,
         required: true
     },
+    vehicle: {
+        type: Boolean,
+    },
+    seats: {
+        type: String,
+    },
     image : {
         type: String
     },
