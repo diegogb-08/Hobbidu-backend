@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 //GET - Return a User with specified User_name ?query=
 router.get('/search',async (req, res) => {
     try {
-        const user = await userController.findByUserName(req.query);
+        const user = await userController.findByName(req.query);
         res.json(user)
     }catch (err) {
         return res.status(500).json({

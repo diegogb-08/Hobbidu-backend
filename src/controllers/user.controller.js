@@ -21,10 +21,13 @@ class Customer {
         return await User.findById(id);
     };
 
-     //GET - Return any User with specified User_name
+     //GET - Return any User with similar name
 
-     async findByUserName({name}) {
-        return await User.find({"user_name": new RegExp(name, 'i')});
+     async findByName(req) {
+        if(req.query != '')
+            return await User.find({"name": new RegExp(req.query, 'i')}).limit(5);
+        else
+            return []
     };
 
     //GET - Return a user with specified email
