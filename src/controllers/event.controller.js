@@ -35,6 +35,7 @@ class Events {
 
     // GET - Return all Events by Coords
     async indexEventsByCoords (query) {
+
         return Event.find({
             location: {
                 $near: {
@@ -45,10 +46,11 @@ class Events {
                     }
                 }
             }
-        }).find((error, results) => {
-            if (error) console.log(error);
-            console.log(JSON.stringify(results, 0, 2))
-        })
+        }).sort({event_date: 'asc'})
+        // .find((error, results) => {
+        //     if (error) console.log(error);
+        //     console.log(JSON.stringify(results, 0, 2))
+        // })
     }
 
     //PUT - Update an Event by ID with verified user

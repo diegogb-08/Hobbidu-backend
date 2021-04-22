@@ -58,9 +58,9 @@ router.get('/hobby/:id', async (req, res) => {
     }
 })
 
-// Get Events by coords
+// List Events by coords
 
-router.get('/distance', async (req, res) => {
+router.post('/distance', async (req, res) => {
 
     try{
         res.json(await eventController.indexEventsByCoords(req.body))
