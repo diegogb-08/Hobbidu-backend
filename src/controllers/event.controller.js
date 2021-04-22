@@ -33,6 +33,24 @@ class Events {
         return Event.findById(id);
     };
 
+    // GET - Return all Events by Coords
+    async indexEventsByCoords (query) {
+        return Event.find({
+            location: {
+                $near: {
+                    $maxDistance: query.distance,
+                    $geometry: {
+                        type: 'Point',
+                        coordinates: query.coords
+                    }
+                }
+            }
+        }).find((error, results) => {
+            if (error) console.log(error);
+            console.log(JSON.stringify(results, 0, 2))
+        })
+    }
+
     //PUT - Update an Event by ID with verified user
 
     async updateEvent(user_id, body){

@@ -21,7 +21,7 @@ class Customer {
         return await User.findById(id);
     };
 
-     //GET - Return any User with similar name
+    //GET - Return any User with similar name
 
      async findByName(req) {
         if(req.query != '')

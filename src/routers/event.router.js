@@ -58,6 +58,20 @@ router.get('/hobby/:id', async (req, res) => {
     }
 })
 
+// Get Events by coords
+
+router.get('/distance', async (req, res) => {
+
+    try{
+        res.json(await eventController.indexEventsByCoords(req.body))
+    } catch (err) {
+
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
 // Get all Events by hobby Id
 
 router.get('/:id', async (req, res) => {
@@ -70,6 +84,7 @@ router.get('/:id', async (req, res) => {
         });
     }
 })
+
 
 // Update an Event by ID with verified user
 

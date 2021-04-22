@@ -27,8 +27,8 @@ const userSchema = new Schema({
     phone_number: { 
         type: Number
     },
-    location: { 
-        type: String
+    location : {
+        type: Schema.Types.Mixed,
     },
     bio: {
         type: String
