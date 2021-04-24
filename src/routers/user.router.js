@@ -60,10 +60,10 @@ router.get('/:id',async (req, res) => {
 
  //POST - SignIn a new User in the DB & Login
 
-router.post('/', upload.single('profile_img'), async (req, res) => {
+router.post('/', async (req, res) => {
 
     try{
-        const user = await userController.signUpUser(req.body,req.file.path);
+        const user = await userController.signUpUser(req.body);
         res.json(user);
     } catch( err ){
         return res.status(500).json({

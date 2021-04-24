@@ -7,8 +7,13 @@ class Hobbies {
     }
 
     //GET - Return all Hobbys in the DB
-    async findAllHobbys(){
+    async findLimitedHobbys(){
         return Hobby.find().limit(15);
+    };
+
+    //GET - Return all Hobbys in the DB
+    async findAllHobbys(){
+        return Hobby.find();
     };
 
     //GET - Return all Hobbys in the DB

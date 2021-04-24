@@ -41,9 +41,8 @@ class Customer {
 
     //POST - SignUp a new User in the DB & Login
 
-    async signUpUser(user,filePath){
+    async signUpUser(user){
         user.password = await bcrypt.hash(user.password, 10)
-        user.profile_img = filePath
        return await User.create(user)
     };
 

@@ -4,9 +4,21 @@ const auth = require('../middlewares/auth');
 
 // API routes
 
-//GET - Return all Hobbys in the DB
+//GET - Return 15 Hobbys in the DB
 
 router.get('/', async (req, res) => {
+    try {
+        res.json(await hobbyController.findLimitedHobbys())
+    }catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
+//GET - Return All Hobbys in the DB
+
+router.get('/all', async (req, res) => {
     try {
         res.json(await hobbyController.findAllHobbys())
     }catch (err) {
