@@ -62,6 +62,20 @@ class Events {
             throw new Error('Not authorized to update this Event')
     };
 
+    // PUT - Join an Event
+    
+    async joinEvent(id,user_id){
+
+        let event = await Event.findById(id)
+        if (event.joiners.find(element => element === user_id) === undefined){
+            event.joiners.push(user_id)
+            return await Event.findByIdAndUpdate(id,event,{new: true})
+        }else{
+            event.joiners = event.joiners.filter(element => element !== user_id)
+            return await Event.findByIdAndUpdate(id,event,{new: true})
+        }
+    }
+
     //DELETE - Delete a Event with specified ID
 
     async deleteEvent(user_id, body) {

@@ -100,6 +100,20 @@ router.put('/:id', async (req, res) => {
     }
 })
 
+// Update an Event by ID with verified user
+
+router.put('/join/:id', async (req, res) => {
+
+    try{
+        let id = req.params.id
+        res.json(await eventController.joinEvent(id,req.body.user_id))
+    } catch (err){
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+})
+
 router.delete('/:id', async (req, res) => {
 
     try{
