@@ -15,17 +15,26 @@ class Events {
     //GET - Return all Events in the DB
     async indexAllEvents(){
         return Event.find()
+            .populate('joiners')
+            .populate('user_id')
+            .populate('hobby_id');
     };
 
     //GET - Return all Events by User Id
     async findEventByUserId(user_id){
-        return Event.find({"user_id": user_id});
+        return Event.find({"user_id": user_id})
+            .populate('joiners')
+            .populate('user_id')
+            .populate('hobby_id');
     };
 
     
     //GET - Return all Events by Hobby Id
     async findEventsByHobbyId(hobby_id) {
-        return Event.find({"hobby_id": hobby_id});
+        return Event.find({"hobby_id": hobby_id})
+            .populate('joiners')
+            .populate('user_id')
+            .populate('hobby_id');
     };
     
     //GET - Return a Event with specified ID
@@ -49,7 +58,11 @@ class Events {
                     }
                 }
             }
-        }).sort({event_date: 'asc'})
+        })
+        .sort({event_date: 'asc'})
+        .populate('joiners')
+        .populate('user_id')
+        .populate('hobby_id')
 
     }
 
@@ -58,6 +71,9 @@ class Events {
     async updateEvent(user_id, body){
         if(user_id == body.user_id)
             return await Event.findByIdAndUpdate(body._id,body,{new: true})
+            .populate('joiners')
+            .populate('user_id')
+            .populate('hobby_id');
         else
             throw new Error('Not authorized to update this Event')
     };
@@ -69,12 +85,14 @@ class Events {
         let event = await Event.findById(id)
         if (event.joiners.find(element => element === user_id) === undefined){
             event.joiners.push(user_id)
-            return await Event.findByIdAndUpdate(id,event,{new: true}).populate('joiners')
+            return await Event.findByIdAndUpdate(id,event,{new: true})
+                .populate('joiners')
                 .populate('user_id')
                 .populate('hobby_id');
         }else{
             event.joiners = event.joiners.filter(element => element !== user_id)
-            return await Event.findByIdAndUpdate(id,event,{new: true}).populate('joiners')
+            return await Event.findByIdAndUpdate(id,event,{new: true})
+                .populate('joiners')
                 .populate('user_id')
                 .populate('hobby_id');
         }
