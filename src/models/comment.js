@@ -11,7 +11,10 @@ const commentSchema = new Schema({
     post_id : {
         type: ObjectId,
         ref: 'Post',
-        required: true
+    },
+    event_id : {
+        type: ObjectId,
+        ref: 'Event',
     },
     content : {
         type: String,
