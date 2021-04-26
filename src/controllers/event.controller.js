@@ -30,7 +30,10 @@ class Events {
     
     //GET - Return a Event with specified ID
     async findById(id) {
-        return Event.findById(id);
+        return await Event.findById(id)
+        .populate('joiners')
+        .populate('user_id')
+        .populate('hobby_id');
     };
 
     // GET - Return all Events by Coords
@@ -47,10 +50,7 @@ class Events {
                 }
             }
         }).sort({event_date: 'asc'})
-        // .find((error, results) => {
-        //     if (error) console.log(error);
-        //     console.log(JSON.stringify(results, 0, 2))
-        // })
+
     }
 
     //PUT - Update an Event by ID with verified user
@@ -69,10 +69,14 @@ class Events {
         let event = await Event.findById(id)
         if (event.joiners.find(element => element === user_id) === undefined){
             event.joiners.push(user_id)
-            return await Event.findByIdAndUpdate(id,event,{new: true})
+            return await Event.findByIdAndUpdate(id,event,{new: true}).populate('joiners')
+                .populate('user_id')
+                .populate('hobby_id');
         }else{
             event.joiners = event.joiners.filter(element => element !== user_id)
-            return await Event.findByIdAndUpdate(id,event,{new: true})
+            return await Event.findByIdAndUpdate(id,event,{new: true}).populate('joiners')
+                .populate('user_id')
+                .populate('hobby_id');
         }
     }
 
