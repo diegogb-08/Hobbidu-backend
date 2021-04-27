@@ -71,11 +71,9 @@ class Events {
     async updateEvent(user_id, body){
         if(user_id == body.user_id)
             return await Event.findByIdAndUpdate(body._id,body,{new: true})
-            .populate('joiners')
-            .populate('user_id')
-            .populate('hobby_id');
-        else
+        else{
             throw new Error('Not authorized to update this Event')
+        }
     };
 
     // PUT - Join an Event
