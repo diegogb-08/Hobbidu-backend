@@ -72,7 +72,7 @@ router.post('/distance', async (req, res) => {
     }
 });
 
-// Get all Events by hobby Id
+// Get all Events by Id
 
 router.get('/:id', async (req, res) => {
 
