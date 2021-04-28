@@ -69,9 +69,10 @@ class Events {
     //PUT - Update an Event by ID with verified user
 
     async updateEvent(user_id, body){
-        if(user_id == body.user_id)
+        if(user_id == body.user_id){
+            body.location.type= "Point"
             return await Event.findByIdAndUpdate(body._id,body,{new: true})
-        else{
+        }else{
             throw new Error('Not authorized to update this Event')
         }
     };

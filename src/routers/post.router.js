@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const postController = require('../controllers/post.controller');
 const auth = require('../middlewares/auth');
+const upload = require('../middlewares/uploads')
 
 // API routes
 
@@ -18,10 +19,23 @@ router.get('/', async (req, res) => {
 
 //GET - Return a Post from specified User Id
 
-router.get('/search/:id', auth, async (req, res) => {
+router.get('/user/:id', async (req, res) => {
     try {
         const id = req.params.id;
         res.json(await postController.findPostByUserId(id))
+    }catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
+//GET - Return a Post from specified User Id
+
+router.get('/hobby/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        res.json(await postController.findPostByHobbyId(id))
     }catch (err) {
         return res.status(500).json({
             message: err.message
@@ -44,9 +58,12 @@ router.get('/:id',async (req, res) => {
 
 //POST - Create a new Post in the DB & Login
 
-router.post('/',async (req, res) => {
+router.post('/', upload.single('image'), async (req, res) => {
     try{
-        const post = await postController.createNewPost(req.body);
+
+        console.log(req.body)
+        console.log(req.file)
+        const post = await postController.createNewPost(req.body,req.file.path);
         res.json(post);
     } catch( err ){
         console.log(err)

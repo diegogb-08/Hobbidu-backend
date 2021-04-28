@@ -13,10 +13,9 @@ const postSchema = new Schema({
         ref: 'Hobby',
         required: true
     },
-    image : [{
-        data: Buffer,
-        contentType: String
-    }],
+    image : {
+        type: String
+    },
     descritpion : {
         type: String,
     },

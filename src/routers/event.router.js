@@ -94,6 +94,7 @@ router.put('/:id', async (req, res) => {
         let user_id = req.params.id
         res.json(await eventController.updateEvent(user_id,req.body))
     } catch (err){
+
         return res.status(500).json({
             message: err.message
         });
