@@ -8,21 +8,21 @@ class Posts {
 
     //GET - Return all Posts in the DB
     async findAllPosts(){
-        return Post.find()
+        return await Post.find()
         .populate('user_id')
         .populate('hobby_id');;
     };
 
     //GET - Return all Posts in the DB by User_id
     async findPostByUserId(id){
-        return Post.find({"user_id": id})
+        return await Post.find({"user_id": id})
         .populate('user_id')
         .populate('hobby_id');
     };
 
     //GET - Return all Posts in the DB by Hobby_id
     async findPostByHobbyId(id){
-        return Post.find({"hobby_id": id})
+        return await Post.find({"hobby_id": id})
         .populate('user_id')
         .populate('hobby_id');
     };
@@ -30,7 +30,7 @@ class Posts {
        
     //GET - Return a Post with specified ID
     async findPostById(id) {
-        return Post.findById(id);
+        return await Post.findById(id);
     };
 
     //POST - Create a new Post in the DB & Login
@@ -44,7 +44,7 @@ class Posts {
     //DELETE - Delete a Post with specified ID
 
     async deletePost(id) {
-        return Post.findByIdAndRemove(id)
+        return await Post.findByIdAndRemove(id)
     };
 };
 

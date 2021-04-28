@@ -102,12 +102,13 @@ router.put('/:id', auth, async (req,res) => {
 
   //PUT - Update Profile Picture
 
-  router.put('/update_picture/:id', upload.single('profile_img'), auth, async (req,res) => {
+  router.put('/update_picture/:id', upload.single('croppedImage'), auth, async (req,res) => {
     try{
         const id = req.params.id;
         const userUpdated = await userController.updateProfilePicture(id,req.body,req.file.path)
         res.json(userUpdated).status(200);
     } catch( err ){
+        console.log(err.message)
         return res.status(500).json({
             message: err.message
         });

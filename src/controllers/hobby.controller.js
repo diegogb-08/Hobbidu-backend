@@ -8,17 +8,17 @@ class Hobbies {
 
     //GET - Return all Hobbys in the DB
     async findLimitedHobbys(){
-        return Hobby.find().limit(15);
+        return await Hobby.find().limit(15);
     };
 
     //GET - Return all Hobbys in the DB
     async findAllHobbys(){
-        return Hobby.find();
+        return await Hobby.find();
     };
 
     //GET - Return all Hobbys in the DB
     async findHobbyByUserId(id){
-        return Hobby.find({"user_id": id});
+        return await Hobby.find({"user_id": id});
     };
 
     
@@ -27,17 +27,18 @@ class Hobbies {
         if(query == undefined)
         return []
         else
-        return Hobby.findOne({"hobby_name": query});
+        return await Hobby.findOne({"hobby_name": query});
     };
     
     //GET - Return a Hobby with specified ID
     async findById(id) {
-        return Hobby.findById(id);
+        return await Hobby.findById(id);
     };
 
     //POST - Create a new Hobby in the DB & Login
     async createNewHobby(hobby){
-        let hobbyFound = Hobby.findOne({"hobby_name": hobby.hobby_name});
+
+        let hobbyFound = await Hobby.findOne({"hobby_name": hobby.hobby_name});
         if(hobbyFound){
             return hobbyFound
         }else{
@@ -48,7 +49,7 @@ class Hobbies {
     //DELETE - Delete a Hobby with specified ID
 
     async deleteHobby(id) {
-        return Hobby.findByIdAndRemove(id)
+        return await Hobby.findByIdAndRemove(id)
     };
 };
 

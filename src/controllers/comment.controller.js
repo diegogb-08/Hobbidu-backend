@@ -23,7 +23,7 @@ class Comments {
     
     //GET - Return a Comment by ID
     async indexById(id) {
-        return Comment.findById(id).populate('user_id');
+        return await Comment.findById(id).populate('user_id');
     };
 
     //POST - Create a new Comment in the DB & Login
@@ -38,7 +38,7 @@ class Comments {
     //DELETE - Delete a Comment with specified ID
 
     async deleteComment(id) {
-        return Comment.findByIdAndRemove(id)
+        return await Comment.findByIdAndRemove(id)
     };
 };
 
