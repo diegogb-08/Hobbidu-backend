@@ -20,7 +20,7 @@ class Followers {
     
     //GET - Return a Follower by ID
     async indexById(id) {
-        return Follower.findById(id);
+        return await Follower.findById(id);
     };
 
     //POST - Create a new Follower in the DB & Login
@@ -31,7 +31,7 @@ class Followers {
     //DELETE - Delete a Follower with specified ID
 
     async unFollow(id) {
-        return Follower.findByIdAndRemove(id)
+        return await Follower.findByIdAndRemove(id)
     };
 };
 

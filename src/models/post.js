@@ -14,8 +14,7 @@ const postSchema = new Schema({
         required: true
     },
     image : {
-        data: Buffer,
-        contentType: String
+        type: String
     },
     descritpion : {
         type: String,
