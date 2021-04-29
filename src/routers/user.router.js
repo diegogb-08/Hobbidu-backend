@@ -102,8 +102,9 @@ router.put('/:id', auth, async (req,res) => {
 
   //PUT - Update Profile Picture
 
-  router.put('/update_picture/:id', upload.single('croppedImage'), auth, async (req,res) => {
+router.put('/update_picture/:id', upload.single('image'), auth, async (req,res) => {
     try{
+
         const id = req.params.id;
         const userUpdated = await userController.updateProfilePicture(id,req.body,req.file.path)
         res.json(userUpdated).status(200);

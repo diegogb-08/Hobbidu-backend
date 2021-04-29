@@ -36,9 +36,9 @@ class Posts {
     //POST - Create a new Post in the DB & Login
     async createNewPost(post,file){
         post.image = file;
+        let location = JSON.parse(post.location)
+        post.location = location
         return await Post.create(post)
-        .populate('user_id')
-        .populate('hobby_id');
     };
 
     //DELETE - Delete a Post with specified ID

@@ -16,7 +16,10 @@ const postSchema = new Schema({
     image : {
         type: String
     },
-    descritpion : {
+    location : {
+        type: Schema.Types.Mixed,
+    },
+    description : {
         type: String,
     },
     creation_date: {

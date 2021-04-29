@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const postController = require('../controllers/post.controller');
-const auth = require('../middlewares/auth');
 const upload = require('../middlewares/uploads')
 
 // API routes
@@ -60,9 +59,6 @@ router.get('/:id',async (req, res) => {
 
 router.post('/', upload.single('image'), async (req, res) => {
     try{
-
-        console.log(req.body)
-        console.log(req.file)
         const post = await postController.createNewPost(req.body,req.file.path);
         res.json(post);
     } catch( err ){
