@@ -1,5 +1,6 @@
 const Post = require('../models/post');
 
+
 class Posts {
 
     constructor(){
@@ -10,7 +11,7 @@ class Posts {
     async findAllPosts(){
         return await Post.find()
         .populate('user_id')
-        .populate('hobby_id');;
+        .populate('hobby_id');
     };
 
     //GET - Return all Posts in the DB by User_id
