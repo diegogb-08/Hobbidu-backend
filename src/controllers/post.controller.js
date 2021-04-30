@@ -1,5 +1,5 @@
 const Post = require('../models/post');
-
+const Follower = require('../models/follower');
 
 class Posts {
 
@@ -7,6 +7,14 @@ class Posts {
 
     }
 
+    /*
+    
+     creation_date: 2021-04-29T16:48:30.771Z,
+     creation_date: 2021-04-29T16:59:49.061Z,
+     creation_date: 2021-04-29T16:59:49.061Z,
+     creation_date: 2021-04-29T20:34:57.418Z,
+    
+    */
     //GET - Return all Posts in the DB
     async findAllPosts(){
         return await Post.find()
@@ -16,7 +24,15 @@ class Posts {
 
     //GET - Return all Posts in the DB by User_id
     async findPostByUserId(id){
-        return await Post.find({"user_id": id})
+        let query = await Follower.find({"follower_id": id}, { '_id': 0, 'user_id': 1})
+        .then(result => result.map(obj => {
+            return obj.user_id;
+        }))
+
+        query.unshift(id)
+
+        return await Post.find({"user_id": query})
+        .sort({creation_date: 'desc'})
         .populate('user_id')
         .populate('hobby_id');
     };
