@@ -32,7 +32,7 @@ class Comments {
         if(newComment.event_id)
             return await Comment.find({"event_id": comment.event_id}).populate('user_id');
         if(newComment.post_id)
-            return await Comment.find({"post_id": id}).populate('user_id');
+            return await Comment.find({"post_id": comment.post_id}).populate('user_id');
     };
 
     //DELETE - Delete a Comment with specified ID

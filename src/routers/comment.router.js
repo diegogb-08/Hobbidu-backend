@@ -37,7 +37,7 @@ router.get('/event/:id', async (req, res) => {
         res.json(await commentController.indexCommentsByEvent(id))
     }catch (err) {
         return res.status(500).json({
-            message: err.message
+            message: err.message602415199
         });
     }
 });
@@ -61,6 +61,8 @@ router.get('/:id', async (req, res) => {
 
 router.post('/',async (req, res) => {
     try{
+
+        console.log(req.body)
         res.json(await commentController.createComment(req.body));
     } catch( err ){
         console.log(err)
