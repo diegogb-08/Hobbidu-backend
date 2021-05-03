@@ -109,7 +109,7 @@ router.put('/update_picture/:id', upload.single('image'), auth, async (req,res) 
         const userUpdated = await userController.updateProfilePicture(id,req.body,req.file.path)
         res.json(userUpdated).status(200);
     } catch( err ){
-        console.log(err.message)
+
         return res.status(500).json({
             message: err.message
         });

@@ -50,7 +50,6 @@ router.post('/',async (req, res) => {
     try{
         res.json(await followerController.follow(req.body));
     } catch( err ){
-        console.log(err)
         return res.status(500).json({
             message: err.message
         });

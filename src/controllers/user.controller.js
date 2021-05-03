@@ -72,7 +72,7 @@ class Customer {
     //PUT - Update Profile picture
 
     async updateProfilePicture(id,user, file){
-        console.log(file)
+
         user.profile_img = file;
         return await User.findByIdAndUpdate(id,user,{new: true})
     };

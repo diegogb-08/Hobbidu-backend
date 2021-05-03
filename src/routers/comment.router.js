@@ -61,11 +61,8 @@ router.get('/:id', async (req, res) => {
 
 router.post('/',async (req, res) => {
     try{
-
-        console.log(req.body)
         res.json(await commentController.createComment(req.body));
     } catch( err ){
-        console.log(err)
         return res.status(500).json({
             message: err.message
         });
