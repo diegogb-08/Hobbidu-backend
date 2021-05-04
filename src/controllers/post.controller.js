@@ -32,7 +32,7 @@ class Posts {
         query.unshift(id)
 
         return await Post.find({"user_id": query})
-        .sort({date: -1})
+        .sort({creation_date: 1})
         .populate('user_id')
         .populate('hobby_id');
     };
