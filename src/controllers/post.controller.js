@@ -32,9 +32,13 @@ class Posts {
         query.unshift(id)
 
         return await Post.find({"user_id": query})
-        .sort({creation_date: 1})
+        .sort({creation_date: -1})
         .populate('user_id')
-        .populate('hobby_id');
+        .populate('hobby_id')
+        .exec(function (err, docs) {
+
+            console.log(docs.length);
+        });
     };
 
     //GET - Return all Posts in the DB by Hobby_id
