@@ -11,11 +11,21 @@ class Posts {
     async findAllPosts(){
         return await Post.find()
         .populate('user_id')
-        .populate('hobby_id');
+        .populate('hobby_id')
+        .populate('like');
+    };
+
+    //GET - Return all Posts in the DB
+    async findOwnPostsByUserId(id){
+        console.log(id)
+        return await Post.find({"user_id": id})
+        .populate('user_id')
+        .populate('hobby_id')
+        .populate('like');
     };
 
     //GET - Return all Posts in the DB by User_id
-    async findPostByUserId(id){
+    async findFollowAndOwnPostByUserId(id){
         let query = await Follower.find({"follower_id": id}, { '_id': 0, 'user_id': 1})
         .then(result => result.map(obj => {
             return obj.user_id;
@@ -26,7 +36,8 @@ class Posts {
         return await Post.find({"user_id": query})
         .populate('user_id')
         .populate('hobby_id')
-        .sort({creation_date: -1})
+        .populate('like')
+        .sort({creation_date: -1});
 
     };
 
@@ -34,6 +45,7 @@ class Posts {
     async findPostByHobbyId(id){
         return await Post.find({"hobby_id": id})
         .populate('user_id')
+        .populate('like')
         .populate('hobby_id');
     };
 

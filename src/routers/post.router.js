@@ -22,16 +22,31 @@ router.get('/', async (req, res) => {
 
 //GET - Return a Post from specified User Id
 
-router.get('/user/:id', async (req, res) => {
+router.get('/own/:id', async (req, res) => {
     try {
         const id = req.params.id;
-        res.json(await postController.findPostByUserId(id))
+        res.json(await postController.findOwnPostsByUserId(id))
     }catch (err) {
         return res.status(500).json({
             message: err.message
         });
     }
 });
+
+//GET - Return a Post from specified User Id
+
+router.get('/user/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        res.json(await postController.findFollowAndOwnPostByUserId(id))
+    }catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
+
 
 //GET - Return a Post from specified User Id
 
