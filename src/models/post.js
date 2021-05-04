@@ -22,6 +22,11 @@ const postSchema = new Schema({
     description : {
         type: String,
     },
+    like : {
+        type: Array,
+        ref: 'User',
+        default: []
+    },
     creation_date: {
         type: Date,
         default: new Date

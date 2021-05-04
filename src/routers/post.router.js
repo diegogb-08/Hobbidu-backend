@@ -62,7 +62,21 @@ router.post('/', upload.single('image'), async (req, res) => {
         const post = await postController.createNewPost(req.body,req.file.path);
         res.json(post);
     } catch( err ){
-        console.log(err)
+
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+})
+
+// Like a post
+
+router.put('/like/:id', async (req, res) => {
+
+    try{
+        let id = req.params.id
+        res.json(await postController.likePost(id,req.body.like))
+    } catch (err){
         return res.status(500).json({
             message: err.message
         });

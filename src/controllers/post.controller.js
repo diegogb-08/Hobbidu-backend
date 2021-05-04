@@ -58,6 +58,26 @@ class Posts {
         return await Post.create(post)
     };
 
+    // PUT - Join an Event
+    
+    async likePost(id,user_id){
+    
+        let post = await Post.findById(id)
+        if (post.like.find(element => element === user_id) === undefined){
+            post.like.push(user_id)
+            return await Post.findByIdAndUpdate(id,post,{new: true})
+                .populate('user_id')
+                .populate('hobby_id')
+                .populate('like');
+        }else{
+            post.like = post.like.filter(element => element !== user_id)
+            return await Post.findByIdAndUpdate(id,post,{new: true})
+                .populate('user_id')
+                .populate('hobby_id')
+                .populate('like');
+        }
+    }
+
     //DELETE - Delete a Post with specified ID
 
     async deletePost(id) {
