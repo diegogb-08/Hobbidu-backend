@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const auth = require('../middlewares/auth');
 const upload = require('../middlewares/uploads')
 const { uploadFile } = require('../middlewares/s3')
-const fs = require('fs');
+const fs = require('fs-extra');
 const util = require('util');
 const unlinkFile = util.promisify(fs.unlink);
 
