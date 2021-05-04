@@ -4,9 +4,9 @@ const jwt = require('jsonwebtoken');
 const auth = require('../middlewares/auth');
 const upload = require('../middlewares/uploads')
 const { uploadFile } = require('../middlewares/s3')
-const fs = require('fs-extra');
+const fse = require('fs-extra');
 const util = require('util');
-const unlinkFile = util.promisify(fs.unlink);
+const unlinkFile = util.promisify(fse.unlink);
 
 // API routes
 
@@ -110,6 +110,7 @@ router.put('/update_picture/:id', upload.single('image'), auth, async (req,res) 
     try{
 
         const id = req.params.id;
+        console.log(req.file)
         const result = await uploadFile(req.file)
         const filePath = `/images/${result.Key}`;
         await unlinkFile(req.file.path)

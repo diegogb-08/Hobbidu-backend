@@ -17,7 +17,6 @@ class Posts {
 
     //GET - Return all Posts in the DB
     async findOwnPostsByUserId(id){
-        console.log(id)
         return await Post.find({"user_id": id})
         .populate('user_id')
         .populate('hobby_id')
