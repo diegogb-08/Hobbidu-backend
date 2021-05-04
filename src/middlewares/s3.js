@@ -1,5 +1,5 @@
 require('dotenv').config();
-const fs = require('fs-extra')
+const fse = require('fs-extra')
 const S3 = require('aws-sdk/clients/s3');
 
 
@@ -17,7 +17,7 @@ const s3 = new S3({
 // uploads a file to s3
 
 const uploadFile = (file) => {
-    const fileStream = fs.createReadStream(file.path);
+    const fileStream = fse.createReadStream(file.path);
 
     const uploadParams = {
         Bucket: bucketName,
