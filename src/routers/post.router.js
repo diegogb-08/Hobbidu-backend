@@ -1,6 +1,10 @@
 const router = require('express').Router();
 const postController = require('../controllers/post.controller');
 const upload = require('../middlewares/uploads')
+const { uploadFile } = require('../middlewares/s3')
+const fs = require('fs');
+const util = require('util');
+const unlinkFile = util.promisify(fs.unlink);
 
 // API routes
 
@@ -59,7 +63,11 @@ router.get('/:id',async (req, res) => {
 
 router.post('/', upload.single('image'), async (req, res) => {
     try{
-        const post = await postController.createNewPost(req.body,req.file.path);
+
+        const result = await uploadFile(req.file)
+        const filePath = `/images/${result.Key}`;
+        await unlinkFile(req.file.path)
+        const post = await postController.createNewPost(req.body,filePath);
         res.json(post);
     } catch( err ){
 

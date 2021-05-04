@@ -1,1 +1,0 @@
-This is just an empty file to keep the uploads directory within GitHubs!
