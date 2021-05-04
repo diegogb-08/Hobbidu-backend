@@ -3,6 +3,10 @@ const userController = require('../controllers/user.controller');
 const jwt = require('jsonwebtoken');
 const auth = require('../middlewares/auth');
 const upload = require('../middlewares/uploads')
+const { uploadFile } = require('../middlewares/s3')
+const fs = require('fs');
+const util = require('util');
+const unlinkFile = util.promisify(fs.unlink);
 
 // API routes
 
@@ -106,8 +110,10 @@ router.put('/update_picture/:id', upload.single('image'), auth, async (req,res) 
     try{
 
         const id = req.params.id;
-        const userUpdated = await userController.updateProfilePicture(id,req.body,req.file.path)
-        res.json(userUpdated).status(200);
+        const result = await uploadFile(req.file)
+        const filePath = `/images/${result.Key}`;
+        await unlinkFile(req.file.path)
+        res.json(await userController.updateProfilePicture(id,req.body,filePath)).status(200);
     } catch( err ){
 
         return res.status(500).json({
