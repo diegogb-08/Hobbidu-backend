@@ -2,7 +2,7 @@ const router = require('express').Router();
 const postController = require('../controllers/post.controller');
 const upload = require('../middlewares/uploads')
 const { uploadFile } = require('../middlewares/s3')
-const fs = require('fs');
+const fs = require('fs-extra');
 const util = require('util');
 const unlinkFile = util.promisify(fs.unlink);
 
