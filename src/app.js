@@ -11,17 +11,9 @@ const port = 3000;
 // Middleware
 app.use(express.json())
 app.use(cors())
-app.use('/uploads', express.static('uploads'))
+//app.use('/uploads', express.static('uploads'))
 app.use(router);
 
-// Get images from AWS
-
-app.get('/images/:key', (req, res) => {
-    const key = req.params.key;
-    const readStream = getFileStream(key);
-
-    readStream.pipe(res)
-})
 
 // Start server
 db
