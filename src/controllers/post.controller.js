@@ -7,14 +7,6 @@ class Posts {
 
     }
 
-    /*
-    
-     creation_date: 2021-04-29T16:48:30.771Z,
-     creation_date: 2021-04-29T16:59:49.061Z,
-     creation_date: 2021-04-29T16:59:49.061Z,
-     creation_date: 2021-04-29T20:34:57.418Z,
-    
-    */
     //GET - Return all Posts in the DB
     async findAllPosts(){
         return await Post.find()
@@ -32,13 +24,10 @@ class Posts {
         query.unshift(id)
 
         return await Post.find({"user_id": query})
-        .sort({creation_date: -1})
         .populate('user_id')
         .populate('hobby_id')
-        .exec(function (err, docs) {
+        .sort({creation_date: -1})
 
-            console.log(docs.length);
-        });
     };
 
     //GET - Return all Posts in the DB by Hobby_id
