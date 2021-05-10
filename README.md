@@ -36,16 +36,38 @@
 
 ## Installation
 
+###### Frontend
+
+Install the dependencies and devDependencies for the frontend repository.
+
+```sh
+npm i
+```
+In the project directory, you can run:
+
+```sh
+npm start
+```
+And if you wish, you can run the scss
+
+```sh
+npm run scss
+```
+
+###### Backend
+
 Install the dependencies and devDependencies for the backend repository.
 
 ```sh
 npm i
 ```
-In the project directory, you can start the server by running the below command in your terminal:
+In the project directory, you can run:
 
 ```sh
 npm run start
 ```
+On the other side you will need to add the enviroments to run your own MongoDB database.
+
 
 
 <!-- ABOUT THE PROJECT -->
@@ -77,80 +99,55 @@ Back-end and front-end user authentication was built from scratch by encrypting 
 
 <!-- USAGE -->
 ## APP OVERVIEW
-<!-- 
-#### Registration & Login
-<img src="public/gif/scroll.gif" alt="Scroll" >
+
+###### Registration & Login
+
+<img src="https://github.com/diegogb-08/Hobbidu-frontend/blob/master/public/gif/register.gif?raw=true" alt="Register" >
 
 <br>
 <br>
 
-<img src="public/gif/enterEmail.gif" alt="enterEmail" >
+###### Login and User profile update
+
+<img src="https://github.com/diegogb-08/Hobbidu-frontend/blob/master/public/gif/login.gif?raw=true" alt="Login" >
 
 <br>
 <br>
 
-<img src="public/gif/register.gif" alt="Register" >
+###### Edit hobbies, change email & password and logaout
+
+<img src="https://github.com/diegogb-08/Hobbidu-frontend/blob/master/public/gif/edit_hobbies.gif?raw=true" alt="edit hobby" >
 
 <br>
 <br>
 
-<img src="public/gif/login.gif" alt="Login" >
+###### Follow users
+
+<img src="https://github.com/diegogb-08/Hobbidu-frontend/blob/master/public/gif/follow.gif?raw=true" alt="follow users" >
 
 <br>
 <br>
 
-<img src="public/gif/logout.gif" alt="Logout" >
+###### Filter events by location and distance
+
+<img src="https://github.com/diegogb-08/Hobbidu-frontend/blob/master/public/gif/event_location.gif?raw=true" alt="follow users" >
 
 <br>
 <br>
 
-#### User & Rental view
+###### Create event
 
-<img src="public/gif/carousel.gif" alt="carousel" >
-
-<br>
-<br>
-
-<img src="public/gif/modal.gif" alt="modal" >
+<img src="https://github.com/diegogb-08/Hobbidu-frontend/blob/master/public/gif/create_event.gif?raw=true" alt="follow users" >
 
 <br>
 <br>
 
-<img src="public/gif/search.gif" alt="search" >
+###### Create post
+
+<img src="https://github.com/diegogb-08/Hobbidu-frontend/blob/master/public/gif/create_post.gif?raw=true" alt="follow users" >
 
 <br>
 <br>
-
-<img src="public/gif/myList.gif" alt="myList" >
-
-<br>
-<br>
-
-
-
-<img src="public/gif/buyProcess.gif" alt="buyProcess" >
-
-<br>
-<br>
-
-<img src="public/gif/deleteAll.gif" alt="deleteAll" >
-
-<br>
-<br>
-
-
-#### Profile & Watchlist view
-
-<img src="public/gif/profileProcess.gif" alt="profileProcess" >
-
-<br>
-<br>
-
-<img src="public/gif/watchlist.gif" alt="watchlist" >
-
-<br>
-<br> -->
-
 
 ---
 
@@ -161,8 +158,8 @@ Back-end and front-end user authentication was built from scratch by encrypting 
     <a href="https://aws.amazon.com/" target="_blank"> 
         <img src="https://raw.githubusercontent.com/diegogb-08/Hobbidu-frontend/master/public/aws-logo.png" alt="Amazon Web Services" width="40" height="40"/>
     </a> 
-    <a href="https://getbootstrap.com" target="_blank"> 
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/>
+    <a href="https://sass-lang.com/" target="_blank"> 
+        <img src="https://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg" alt="SASS" width="40" height="40"/>
     </a> 
     <a href="https://www.w3schools.com/css/" target="_blank"> 
         <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/>
