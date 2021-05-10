@@ -110,7 +110,6 @@ router.put('/update_picture/:id', upload.single('image'), auth, async (req,res) 
     try{
 
         const id = req.params.id;
-        console.log(req.file)
         const result = await uploadFile(req.file)
         const filePath = `/images/${result.Key}`;
         await unlinkFile(req.file.path)
