@@ -17,7 +17,11 @@ const QUEARY_STRING = MONGO_USER ?
 `mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DBNAME}`
 
 // Connection to DB
-const db = mongoose.connect(QUEARY_STRING,{useNewUrlParser: true, useUnifiedTopology: true})
+const db = mongoose.connect(QUEARY_STRING,{
+    useNewUrlParser: true, 
+    useUnifiedTopology: true,
+    useFindAndModify: false
+})
 .then(console.log('Connected to Database'))
 .catch((error) => console.log(error));
 
